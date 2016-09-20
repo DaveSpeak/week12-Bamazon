@@ -84,7 +84,17 @@ function start(){
 										}, {
 										    ItemID: updateID
 										}], function(err, res) {});
-										console.log('Additional inventory ordered, cost= $'+(ordered*res[updateID-1].Price).toFixed(2));
+										var totalCost=ordered*res[updateID-1].Price*.85;
+										connection.query('SELECT * FROM departments WHERE ?',{DepartmentName:res[updateID-1].DepartmentName},
+										 	function(error, results){
+												if (error) throw(error);
+												var totalOverHead=totalCost+results[0].OverHeadCosts;
+												connection.query('UPDATE departments SET ? WHERE ?',[{OverHeadCosts:totalOverHead},
+													{DepartmentName:res[updateID-1].DepartmentName}], function(err2,res2){
+														if (err2) throw(err2);
+											});
+										});
+										console.log('Additional inventory ordered, cost= $'+(totalCost).toFixed(2));
 										start();
 									});
 								}
@@ -130,6 +140,7 @@ function start(){
 			});	
 		}
 start();
+
 function returnItemId(string){
 	var id='';
 	for (var i=7;i<string.length;i++){
@@ -171,6 +182,7 @@ function updateInventory(answer,userBuy,res){
 	}
 
 }
+
 function end(){
 	connection.end();
 	process.exit();

@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
-var depsales;
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -12,7 +11,6 @@ var connection = mysql.createConnection({
 
 function start(){
 	//Display items in the database
-	// console.log('Here\'s the items for sale:');
 	connection.query('SELECT * FROM Products', function(err1, res1){
 		inquirer.prompt({
 			name:'choice',
@@ -73,7 +71,7 @@ function updateInventory(answer,userBuy,res){
 			console.log('***********************************************************************');
 			connection.query('SELECT * FROM departments WHERE ?',{DepartmentName:res.DepartmentName}, function(error, results){
 				if (error) throw(error);
-				depsales=parseFloat(totalSale)+results[0].TotalSales;
+				var depsales=parseFloat(totalSale)+results[0].TotalSales;
 				connection.query('UPDATE departments SET ? WHERE ?',[{TotalSales:depsales},
 					{DepartmentName:res.DepartmentName}], function(err2,res2){
 						if (err2) throw(err2);
