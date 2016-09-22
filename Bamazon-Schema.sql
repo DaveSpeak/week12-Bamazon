@@ -67,3 +67,12 @@ VALUES ("Travel", 3000.00, 5000.00);
 INSERT INTO Departments(DepartmentName,OverHeadCosts,TotalSales)
 VALUES ("Electronics", 4000.00,18000.00);
 
+USE Bamazon_DB;
+
+CREATE TABLE Transactions(
+  TransactionID INT NOT NULL AUTO_INCREMENT,
+    DepartmentName VARCHAR(50) NOT NULL,
+    ProductName VARCHAR(100) NOT NULL,
+  QuantitySold INT default 0,
+    PRIMARY KEY (TransactionID)
+);

@@ -1,0 +1,27 @@
+{
+  "name": "week12-bamazon",
+  "version": "1.0.0",
+  "description": "sales database and support functions",
+  "main": "BamazonCustomer.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaveSpeak/week12-Bamazon.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "D. Speaker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaveSpeak/week12-Bamazon/issues"
+  },
+  "homepage": "https://github.com/DaveSpeak/week12-Bamazon#readme",
+  "dependencies": {
+    "console.table": "^0.7.0",
+    "inquirer": "^1.1.3",
+    "mysql": "^2.11.1"
+  }
+}
